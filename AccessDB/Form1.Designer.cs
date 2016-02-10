@@ -362,7 +362,7 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Location = new System.Drawing.Point(13, 351);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(784, 22);
+            this.button7.Size = new System.Drawing.Size(391, 22);
             this.button7.TabIndex = 32;
             this.button7.Text = "Выбрать показатель(и)";
             this.button7.UseVisualStyleBackColor = true;
@@ -515,7 +515,7 @@
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Location = new System.Drawing.Point(803, 351);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(103, 50);
+            this.button10.Size = new System.Drawing.Size(103, 22);
             this.button10.TabIndex = 48;
             this.button10.Text = "Вернуться назад";
             this.button10.UseVisualStyleBackColor = true;
@@ -524,9 +524,9 @@
             // button11
             // 
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Location = new System.Drawing.Point(13, 379);
+            this.button11.Location = new System.Drawing.Point(406, 351);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(404, 22);
+            this.button11.Size = new System.Drawing.Size(391, 22);
             this.button11.TabIndex = 49;
             this.button11.Text = "Выбрать испытателя(ей)";
             this.button11.UseVisualStyleBackColor = true;
@@ -535,12 +535,13 @@
             // button12
             // 
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Location = new System.Drawing.Point(423, 379);
+            this.button12.Location = new System.Drawing.Point(490, 456);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(374, 22);
             this.button12.TabIndex = 50;
             this.button12.Text = "Перечень испытательного оборудования и средств измерений";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Visible = false;
             // 
             // textBox2
             // 
@@ -554,7 +555,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 413);
+            this.ClientSize = new System.Drawing.Size(924, 392);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);

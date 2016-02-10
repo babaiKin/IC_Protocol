@@ -76,7 +76,7 @@ namespace AccessDB
             */
 
             //поиск последнего номера протокола
-            string[] dirs = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\ОА\Протоколы", "*");
+           /* string[] dirs = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\ОА\Протоколы", "*");
             if (dirs.Count() != 0)
             {
                 try
@@ -92,7 +92,7 @@ namespace AccessDB
 
             else
                 textBox1.Text = "файлы протоколов не найдены...";
-
+            */
             comboBox2.Items.Clear();
             dbCon.Open();
             DataTable tbls = dbCon.GetSchema("Tables", new string[] { null, null, null, "TABLE" }); //список всех таблиц
@@ -118,6 +118,12 @@ namespace AccessDB
             if (comboBox2.Text == "")
             {
                 MessageBox.Show("Поле 'Группа, согласно ОА' не заполнено!");
+                return;
+            }
+
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("Поле 'Номер протокола' не заполнено!");
                 return;
             }
 

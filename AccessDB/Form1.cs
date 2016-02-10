@@ -174,7 +174,7 @@ namespace AccessDB
             //    return;
             //}
 
-            MessageBox.Show("" + My.poveritelListLength);
+            //MessageBox.Show("" + My.poveritelListLength);
             //dbCon.Close();
             Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
             Microsoft.Office.Interop.Word.Document doc = new Microsoft.Office.Interop.Word.Document();
@@ -288,7 +288,7 @@ namespace AccessDB
                 }
                 n = 0;
 
-                DialogResult res = MessageBox.Show("Экспорт завершен. При нажатии ДА будет открыт сгенерированный файл, при нажатии НЕТ произойдет автоматическое сохранение файла.", "Экспорт в Excel", MessageBoxButtons.YesNoCancel);
+                DialogResult res = MessageBox.Show("Экспорт завершен. При нажатии ДА будет открыт сгенерированный файл, при нажатии НЕТ произойдет автоматическое сохранение файла и его открытие.", "Экспорт в Excel", MessageBoxButtons.YesNoCancel);
 
                 if (res == DialogResult.Yes)    //открытие сгенерированного файла
                 {
@@ -324,7 +324,6 @@ namespace AccessDB
                     {
                         object Target = (Directory.GetCurrentDirectory() + @"\ОА\Протоколы\" + label1.Text + ".doc");  // куда сохранить
                         object format_ = Word.WdSaveFormat.wdFormatDocumentDefault;
-
                         //Сохранение файла
                         doc.SaveAs(ref Target, ref format_,
                                    ref missing, ref missing, ref missing,
@@ -333,11 +332,20 @@ namespace AccessDB
                                    ref missing, ref missing, ref missing,
                                    ref missing, ref missing);
 
+                        //object falseValue = false;
+                        //object trueValue = true;
+
+                        doc = app.Documents.Open(ref Target, ref missing, ref falseValue,
+                                            ref missing, ref missing, ref missing, ref missing, ref missing,
+                                            ref missing, ref missing, ref missing, ref missing, ref missing,
+                                            ref missing, ref missing, ref missing);
+                        app.Visible = true;
+
                         // Закрываем родительскую форму
                         //Hide();
 
-                        ((Microsoft.Office.Interop.Word._Application)app).Quit();
-                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(app);
+                        //((Microsoft.Office.Interop.Word._Application)app).Quit();
+                        //System.Runtime.InteropServices.Marshal.FinalReleaseComObject(app);
 
                         MessageBox.Show("Экспорт успешно завершен, протокол сохранен под номером " + label1.Text);
 
@@ -722,7 +730,8 @@ namespace AccessDB
 
         private void button11_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("|" + My.poveritelListLength + "|");
+            //this.Enabled = false;
+            //MessageBox.Show("|" + My.poveritelListLength + "|");
 
             if (My.poveritelListLength == 0)
             {
