@@ -74,6 +74,8 @@
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -360,9 +362,9 @@
             // button7
             // 
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Location = new System.Drawing.Point(13, 351);
+            this.button7.Location = new System.Drawing.Point(12, 351);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(391, 22);
+            this.button7.Size = new System.Drawing.Size(785, 22);
             this.button7.TabIndex = 32;
             this.button7.Text = "Выбрать показатель(и)";
             this.button7.UseVisualStyleBackColor = true;
@@ -524,7 +526,7 @@
             // button11
             // 
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Location = new System.Drawing.Point(406, 351);
+            this.button11.Location = new System.Drawing.Point(12, 379);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(391, 22);
             this.button11.TabIndex = 49;
@@ -551,11 +553,34 @@
             this.textBox2.TabIndex = 51;
             this.textBox2.Visible = false;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(132, 460);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(41, 13);
+            this.label26.TabIndex = 52;
+            this.label26.Text = "label26";
+            this.label26.Visible = false;
+            // 
+            // button13
+            // 
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Location = new System.Drawing.Point(406, 379);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(391, 22);
+            this.button13.TabIndex = 53;
+            this.button13.Text = "Выбрать оборудование";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 392);
+            this.ClientSize = new System.Drawing.Size(924, 466);
+            this.Controls.Add(this.button13);
+            this.Controls.Add(this.label26);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
@@ -659,6 +684,8 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button button13;
     }
 }
 

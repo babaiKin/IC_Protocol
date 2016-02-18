@@ -22,5 +22,8 @@ namespace AccessDB
     {
         internal static int poveritelListLength = new int();
         internal static string [] poveritelList = new string[500];
+
+        internal static int oborudovanieListLength = new int();
+        internal static string[] oborudovanieList = new string[500];
     }
 }

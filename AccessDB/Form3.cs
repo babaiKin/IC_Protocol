@@ -165,6 +165,7 @@ namespace AccessDB
                     form1.label9.Text = this.dateTimePicker1.Text;
                     //form1.label9.Text = this.textBox9.Text;
                     form1.label10.Text = this.dateTimePicker2.Text + " - " + this.dateTimePicker3.Text;
+                    form1.label26.Text = this.dateTimePicker3.Text;
                     //form1.label10.Text = this.textBox10.Text;
                     form1.label11.Text = this.textBox11.Text;
                     form1.label12.Text = this.textBox12.Text;
@@ -269,8 +270,14 @@ namespace AccessDB
             myConn.Open();
             //toolStripStatusLabel1.Text = "Статус подключения: " + myConn.State.ToString();
 
-            OleDbCommand com = new OleDbCommand("INSERT INTO [Заказчики] ([Заказчик], [Адрес]) VALUES('" + comboBox1.Text + "','" + textBox3.Text + "')", myConn);
-            com.ExecuteNonQuery();
+            try
+            {
+                OleDbCommand com = new OleDbCommand("INSERT INTO [Заказчики] ([Заказчик], [Адрес]) VALUES('" + comboBox1.Text + "','" + textBox3.Text + "')", myConn);
+                com.ExecuteNonQuery();
+                MessageBox.Show("Заказчик успешно добавлен в БД");
+            }
+            catch
+            { MessageBox.Show("Не удалось добавить заказчика в БД"); }
 
             myConn.Close();
         }

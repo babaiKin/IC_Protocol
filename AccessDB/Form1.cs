@@ -168,6 +168,7 @@ namespace AccessDB
         //экспорт в шаблон Word
         private void button6_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show("" + My.oborudovanie.ToString() );
             //if (textBox2.Text == "")
             //{
             //    MessageBox.Show("Не выбран(ы) испытатель(ли)!");
@@ -199,8 +200,8 @@ namespace AccessDB
 
                 //exception();
                 //string[] txt = { label1.Text, DateTime.Now.ToLongDateString(), label2.Text, label3.Text, /*label4.Text,*/ label5.Text, label4.Text, label6.Text, label23.Text, label7.Text, label8.Text, label9.Text, label10.Text, label11.Text, label12.Text, /*label13.Text*/ label18.Text, label19.Text, label20.Text, label21.Text, label22.Text, label14.Text, label15.Text };
-                string[] txt = { label1.Text, DateTime.Now.ToLongDateString(), label2.Text, label3.Text, /*label4.Text,*/ label5.Text, label4.Text, label6.Text, label23.Text, label7.Text, label8.Text, label9.Text, label10.Text, label11.Text, label12.Text, label13.Text /*, label18.Text, label19.Text, label20.Text, label21.Text, label22.Text*/ /*, label14.Text, label15.Text*/ };
-                string[] FindObj = { "$num$", "$date$", "$zakazchik$", "$adress_zakazchika$", /*"$postavshik$",*/ "$name_izgotov$", "$adress_izgotov$", "$product_name$", "$product_group$", "$name$", "$proba$", "$date_time_postuplenia$", "$date_exe$", "$osnovanie$", "$nd$", "$conditions$" /*, "$temperature$", "$vlazhnost$","$davlenie$", "$elmagpole$", "$magpole$"*/ /*, "$dolznost$", "$sotrudnik$"*/ };
+                string[] txt = { label1.Text, label26.Text, /*DateTime.Now.ToLongDateString(),*/ label2.Text, label3.Text, /*label4.Text,*/ label5.Text, label4.Text, label6.Text, label23.Text, label7.Text, label8.Text, label9.Text, label10.Text, label11.Text, label12.Text, label13.Text /*, label18.Text, label19.Text, label20.Text, label21.Text, label22.Text*/ /*, label14.Text, label15.Text*/ };
+                string[] FindObj = { "$num$", "$date$", /*"$date$",*/ "$zakazchik$", "$adress_zakazchika$", /*"$postavshik$",*/ "$name_izgotov$", "$adress_izgotov$", "$product_name$", "$product_group$", "$name$", "$proba$", "$date_time_postuplenia$", "$date_exe$", "$osnovanie$", "$nd$", "$conditions$" /*, "$temperature$", "$vlazhnost$","$davlenie$", "$elmagpole$", "$magpole$"*/ /*, "$dolznost$", "$sotrudnik$"*/ };
 
                 int n = 0;
                 while (n < FindObj.Length)
@@ -222,7 +223,7 @@ namespace AccessDB
                 n = 0;
 
 
-                string poveritelListFind = "$poveritelList$";
+                //string poveritelListFind = "$poveritelList$";
                 for (int nn = 0;  nn < My.poveritelListLength; nn++)
                 {
                     if (My.poveritelList[nn] == "")
@@ -243,6 +244,38 @@ namespace AccessDB
                 app.Selection.Find.Execute(ref findTextNUM2, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing, ref missing,
                     ref replaceWithNUM2, ref replaceNUM2, ref missing, ref missing, ref missing, ref missing);
+
+
+
+
+
+
+                //string oborudovanieListFind = "$oborudovanie$";
+                for (int nn = 0; nn < My.oborudovanieListLength; nn++)
+                {
+                    //textBox2.AppendText(My.poveritelList[nn] + "\r\r");
+                    //Очищаем параметры поиска
+                    app.Selection.Find.ClearFormatting();
+                    app.Selection.Find.Replacement.ClearFormatting();
+
+                    //Задаём параметры замены и выполняем замену.
+                    object findTextNUM3 = "$oborudovanie$";
+                    object replaceWithNUM3 = "- " + My.oborudovanieList[nn] + ";\r$oborudovanie$";
+                    object replaceNUM3 = 2;
+
+                    app.Selection.Find.Execute(ref findTextNUM3, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref replaceWithNUM3, ref replaceNUM3, ref missing, ref missing, ref missing, ref missing);
+                }
+
+                //Задаём параметры замены и выполняем замену.
+                object findTextNUM4 = "$oborudovanie$";
+                object replaceWithNUM4 = "";
+                object replaceNUM4 = 2;
+
+                app.Selection.Find.Execute(ref findTextNUM4, ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing, ref missing, ref missing,
+                    ref replaceWithNUM4, ref replaceNUM4, ref missing, ref missing, ref missing, ref missing);
 
                 Microsoft.Office.Interop.Word.Table table = doc.Tables[2];
 
@@ -740,11 +773,16 @@ namespace AccessDB
             }
 
             else if (My.poveritelListLength > 0)
-            {
-                
+            {                
                 Form5 form5 = new Form5();
                 form5.Show();
             }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Form6 form6 = new Form6();
+            form6.Show();
         }
     }
 }
