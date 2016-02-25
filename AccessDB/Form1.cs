@@ -246,10 +246,6 @@ namespace AccessDB
                     ref replaceWithNUM2, ref replaceNUM2, ref missing, ref missing, ref missing, ref missing);
 
 
-
-
-
-
                 //string oborudovanieListFind = "$oborudovanie$";
                 for (int nn = 0; nn < My.oborudovanieListLength; nn++)
                 {
@@ -372,21 +368,91 @@ namespace AccessDB
                                             ref missing, ref missing, ref missing, ref missing, ref missing,
                                             ref missing, ref missing, ref missing, ref missing, ref missing,
                                             ref missing, ref missing, ref missing);
+                        ///
+                        ///колонтитулы
+                        ///
+
+                        //верний колонтитул
+                        //первая страница
+                        foreach (Word.Section section in app.ActiveDocument.Sections)
+                        {
+                            Object oMissing = System.Reflection.Missing.Value;
+                            Microsoft.Office.Interop.Word.Selection s = app.Selection;
+
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekFirstPageHeader;
+                            s.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                            doc.ActiveWindow.Selection.TypeText("");
+                            doc.ActiveWindow.Selection.Fields.Add(s.Range);
+
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekMainDocument; //выход из колонтитула
+                        }
+
+                        //верхний колонтитул
+                        //остальные страницы
+                        foreach (Word.Section section in app.ActiveDocument.Sections)
+                        {
+                            Object oMissing = System.Reflection.Missing.Value;
+                            Microsoft.Office.Interop.Word.Selection s = app.Selection;
+
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekPrimaryHeader;
+                            s.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                            doc.ActiveWindow.Selection.TypeText("ФБУ «Нижегородский ЦСМ» ИЦ «НИЖЕГОРОДСИСПЫТАНИЯ»          Протокол №" + label1.Text + " от " + label26.Text);
+                            doc.ActiveWindow.Selection.Fields.Add(s.Range);
+
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekMainDocument; //выход из колонтитула
+                        }
+
+                        //нижний колонтитул
+                        //первая страница
+                        foreach (Word.Section section in app.ActiveDocument.Sections)
+                        {
+                            //нижний колонтитул
+                            Object oMissing = System.Reflection.Missing.Value;
+                            Microsoft.Office.Interop.Word.Selection s = app.Selection;
+
+                            // код для номеров страницы
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekFirstPageFooter;
+                            s.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphRight;
+
+                            doc.ActiveWindow.Selection.TypeText("страница ");
+                            object CurrentPage = Microsoft.Office.Interop.Word.WdFieldType.wdFieldPage; //текущая страница
+                            doc.ActiveWindow.Selection.Fields.Add(s.Range, ref CurrentPage, ref oMissing, ref oMissing);
+
+                            doc.ActiveWindow.Selection.TypeText(" из ");
+                            object TotalPages = Microsoft.Office.Interop.Word.WdFieldType.wdFieldNumPages; //всего страниц
+                            doc.ActiveWindow.Selection.Fields.Add(s.Range, ref TotalPages, ref oMissing, ref oMissing);
+
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekMainDocument; //выход из колонтитула
+                        }
+
+                        //нижний колонтитул
+                        //первая страница
+                        foreach (Word.Section section in app.ActiveDocument.Sections)
+                        {
+                            //нижний колонтитул
+                            Object oMissing = System.Reflection.Missing.Value;
+                            Microsoft.Office.Interop.Word.Selection s = app.Selection;
+                            
+                            // код для номеров страницы
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekPrimaryFooter;
+                            s.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphRight;
+
+                            doc.ActiveWindow.Selection.TypeText("страница ");
+                            object CurrentPage = Microsoft.Office.Interop.Word.WdFieldType.wdFieldPage; //текущая страница
+                            doc.ActiveWindow.Selection.Fields.Add(s.Range, ref CurrentPage, ref oMissing, ref oMissing);
+
+                            doc.ActiveWindow.Selection.TypeText(" из ");
+                            object TotalPages = Microsoft.Office.Interop.Word.WdFieldType.wdFieldNumPages; //всего страниц
+                            doc.ActiveWindow.Selection.Fields.Add(s.Range, ref TotalPages, ref oMissing, ref oMissing);
+
+                            doc.ActiveWindow.ActivePane.View.SeekView = Microsoft.Office.Interop.Word.WdSeekView.wdSeekMainDocument; //выход из колонтитула
+                        }
+
                         app.Visible = true;
 
-                        // Закрываем родительскую форму
-                        //Hide();
-
-                        //((Microsoft.Office.Interop.Word._Application)app).Quit();
-                        //System.Runtime.InteropServices.Marshal.FinalReleaseComObject(app);
-
                         MessageBox.Show("Экспорт успешно завершен, протокол сохранен под номером " + label1.Text);
-
-                        /*
-                        string lastNumDir = Directory.GetCurrentDirectory() + @"\ОА\последний_номер.txt";
-                        string lastNumUPD = label1.Text;
-                        System.IO.File.WriteAllText(lastNumDir, lastNumUPD);
-                        */
                     }
                     catch
                     {

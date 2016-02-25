@@ -70,7 +70,42 @@ namespace AccessDB
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            //int selectedCellCount = dataGridView1.GetCellCount(DataGridViewElementStates.Selected);
+            //удаление всех невыделенных ячеек
             int selectedCellCount = dataGridView1.GetCellCount(DataGridViewElementStates.Selected);
+            textBox3.Text = "";
+            if (selectedCellCount > 0)
+            {
+                My.oborudovanieListLength = dataGridView1.SelectedRows.Count;
+                //отсчет в массиве начинается с 0, а в dgv - с 1 
+                string[,] stringArray = new string[dataGridView1.SelectedRows.Count, 2];
+                for (int n = 0; n < dataGridView1.SelectedRows.Count; n++)
+                {
+                    //MessageBox.Show(dataGridView1[1, dataGridView1.SelectedRows[i].Index].Value.ToString() + " || " + dataGridView1[4, dataGridView1.SelectedRows[i].Index].Value.ToString());
+                    stringArray[n, 0] = dataGridView1[2, dataGridView1.SelectedRows[n].Index].Value.ToString();
+                    stringArray[n, 1] = dataGridView1[4, dataGridView1.SelectedRows[n].Index].Value.ToString();
+                    //textBox3.Text = textBox3.Text + "\r- " + dataGridView1[2, dataGridView1.SelectedRows[n].Index].Value.ToString() + ", " + dataGridView1[4, dataGridView1.SelectedRows[n].Index].Value.ToString() + ", " + dataGridView1[11, dataGridView1.SelectedRows[n].Index].Value.ToString();
+                    //textBox3.AppendText("\r- " + dataGridView1[2, dataGridView1.SelectedRows[n].Index].Value.ToString() + ", " + dataGridView1[4, dataGridView1.SelectedRows[n].Index].Value.ToString() + ", " + dataGridView1[11, dataGridView1.SelectedRows[n].Index].Value.ToString());
+
+                    //MessageBox.Show(dataGridView1[2, dataGridView1.SelectedRows[n].Index].Value.ToString() + " || " + dataGridView1[4, dataGridView1.SelectedRows[n].Index].Value.ToString());
+                    My.oborudovanieList[n] = dataGridView1[2, dataGridView1.SelectedRows[n].Index].Value.ToString() + ", " + dataGridView1[4, dataGridView1.SelectedRows[n].Index].Value.ToString() + ", " + dataGridView1[11, dataGridView1.SelectedRows[n].Index].Value.ToString();
+                    //MessageBox.Show("" + My.oborudovanieList[n]);
+                }
+
+                //MessageBox.Show(stringArray[0, 0] + " || " + stringArray[0,1]);
+
+
+                for (int n = dataGridView1.Rows.Count - 1; n >= 0; n--)
+                {
+                    if (dataGridView1[1, n].Selected)
+                    {
+                        //i--;
+                    }
+                    else
+                        dataGridView1.Rows.Remove(dataGridView1.Rows[n]);
+                }
+            }
 
             if (selectedCellCount > 0)
             {
